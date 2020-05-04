@@ -6,7 +6,7 @@ const miliseconds_div = document.getElementById('miliseconds');
 
 function clock() {
     let current_time = new Date();
-    
+
     let refresh=0; // Refresh rate in milli seconds
 
     if (current_time.getHours() < 10) {
@@ -15,14 +15,9 @@ function clock() {
         hours_span.innerHTML = current_time.getHours();
     }
 
-
-    if (current_time.getMinutes() < 10) {
-        minutes_span.innerHTML = `0${current_time.getMinutes()}`;
-    } else {
-        minutes_span.innerHTML = current_time.getMinutes();
-    }
+    if (current_time.getMinutes() < 10) {minutes_span.innerHTML = `0${current_time.getMinutes()}`;}
+    else {minutes_span.innerHTML = current_time.getMinutes();}
         
-    
     if (current_time.getSeconds() < 10) {
         seconds_span.innerHTML = `0${current_time.getSeconds()}`;
     } else {
