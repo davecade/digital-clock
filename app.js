@@ -1,7 +1,14 @@
+//Display Variables
 const hours_span = document.getElementById('hours');
 const minutes_span = document.getElementById('minutes');
 const seconds_span = document.getElementById('seconds');
 const miliseconds_div = document.getElementById('miliseconds');
+
+//Stopwatch Variables
+let miliseconds_stopWatch = 0;
+let seconds_stopWatch = 0;
+let minutes_stopWatch = 0;
+let hours_stopWatch = 0;
 
 
 function clock() {
@@ -26,19 +33,37 @@ function clock() {
 
     setTimeout('clock()',refresh) //calls clock function again to refresh
 }
+
+function checkZero(time) {
+    if (time < 10) {return `0${time}`;}
+    else {return time;}
+}
     
-let seconds = 0
-function startSeconds(){
-    seconds += 1
-    if (seconds < 10) {
-        seconds_span.innerHTML = `0${seconds}`;
-    } else {
-        seconds_span.innerHTML = seconds;
+function stopwatch(){
+
+    if (miliseconds_stopWatch===100) {
+        miliseconds_stopWatch=0;
+        seconds_stopWatch++;
+        seconds_span.innerHTML = checkZero(seconds_stopWatch);
     }
+
+    if (seconds_stopWatch===59) {
+        seconds_stopWatch=0;
+        minutes_stopWatch++;
+        minutes_span.innerHTML = checkZero(minutes_stopWatch);
+    }
+
+    if (minutes_stopWatch===59) {
+        getMinutes=0;
+        hours_stopWatch++
+        hours_span.innerHTML = checkZero(hours_stopWatch);
+    }
+
+    miliseconds_stopWatch += 1
+    miliseconds_div.innerHTML = checkZero(miliseconds_stopWatch);
 
     //miliseconds_div.innerHTML = current_time.getMilliseconds();
 }
 
-
 //clock();
-setInterval(startSeconds, 1000);
+//setInterval(stopwatch, 10);
