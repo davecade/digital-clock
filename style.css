@@ -22,15 +22,11 @@ body {
 
 .clock-box{
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     grid-area: 2 / 2 / span 1 / span 1;
     background-color: gray;
     border-radius: 10px;
     margin: 20px;
     border: gray;
-    border-radius: 10px;
     text-align: center;
     color: black;
     width: 500px;
@@ -50,7 +46,6 @@ body {
 .badge{
     position: absolute;
     border-radius: 10px;
-    position: absolute;
     font-size: 30px;
     height: 40px;
     width: 130px;
