@@ -41,29 +41,43 @@ function checkZero(time) {
     
 function stopwatch(){
 
+
     if (miliseconds_stopWatch===100) {
         miliseconds_stopWatch=0;
         seconds_stopWatch++;
-        seconds_span.innerHTML = checkZero(seconds_stopWatch);
+        if (seconds_stopWatch===60) {
+            seconds_span.innerHTML = checkZero(0);
+        } else {
+            seconds_span.innerHTML = checkZero(seconds_stopWatch);
+        }
+            
     }
 
-    if (seconds_stopWatch===59) {
+    if (seconds_stopWatch===60) {
         seconds_stopWatch=0;
         minutes_stopWatch++;
-        minutes_span.innerHTML = checkZero(minutes_stopWatch);
+        if (minutes_stopWatch===60) {
+            minutes_span.innerHTML = checkZero(0);
+        } else {
+            minutes_span.innerHTML = checkZero(minutes_stopWatch);
+        }
     }
 
-    if (minutes_stopWatch===59) {
-        getMinutes=0;
-        hours_stopWatch++
-        hours_span.innerHTML = checkZero(hours_stopWatch);
+    if (minutes_stopWatch===60) {
+        minutes_stopWatch=0;
+        hours_stopWatch++;
+        if (hours_stopWatch===60) {
+            hours_span.innerHTML = checkZero(0);
+        } else {
+            hours_span.innerHTML = checkZero(hours_stopWatch);
+        }
     }
 
     miliseconds_stopWatch += 1
     miliseconds_div.innerHTML = checkZero(miliseconds_stopWatch);
-
     //miliseconds_div.innerHTML = current_time.getMilliseconds();
 }
 
-//clock();
+clock();
+
 //setInterval(stopwatch, 10);
