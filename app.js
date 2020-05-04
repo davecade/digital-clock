@@ -2,13 +2,10 @@ const hours_span = document.getElementById('hours');
 const minutes_span = document.getElementById('minutes');
 const seconds_span = document.getElementById('seconds');
 
-function refreshClock(){
-    let refresh=1000; // Refresh rate in milli seconds
-    mytime=setTimeout('clock();',refresh)
-}
 
 function clock() {
     let current_time = new Date();
+    let refresh=1000; // Refresh rate in milli seconds
 
     if (current_time.getHours() < 10) {
         hours_span.innerHTML = `0${current_time.getHours()}`;
@@ -29,7 +26,8 @@ function clock() {
     } else {
         seconds_span.innerHTML = current_time.getSeconds();
     }
-    refreshClock();
+
+    setTimeout('clock()',refresh) //calls clock function again to refresh
 }
 
 clock();
