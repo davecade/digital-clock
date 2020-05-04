@@ -54,3 +54,10 @@ body {
     background-color: #E2584D;
     color: white;
 }
+
+#miliseconds {
+    position: absolute;
+    font-size: 40px;
+    right: 50px;
+    bottom: 10px
+}

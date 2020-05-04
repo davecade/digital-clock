@@ -1,11 +1,13 @@
 const hours_span = document.getElementById('hours');
 const minutes_span = document.getElementById('minutes');
 const seconds_span = document.getElementById('seconds');
+const miliseconds_div = document.getElementById('miliseconds');
 
 
 function clock() {
     let current_time = new Date();
-    let refresh=1000; // Refresh rate in milli seconds
+    
+    let refresh=0; // Refresh rate in milli seconds
 
     if (current_time.getHours() < 10) {
         hours_span.innerHTML = `0${current_time.getHours()}`;
@@ -29,5 +31,19 @@ function clock() {
 
     setTimeout('clock()',refresh) //calls clock function again to refresh
 }
+    
+let seconds = 0
+function startSeconds(){
+    seconds += 1
+    if (seconds < 10) {
+        seconds_span.innerHTML = `0${seconds}`;
+    } else {
+        seconds_span.innerHTML = seconds;
+    }
 
-clock();
+    //miliseconds_div.innerHTML = current_time.getMilliseconds();
+}
+
+
+//clock();
+setInterval(startSeconds, 1000);
