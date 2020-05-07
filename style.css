@@ -71,19 +71,21 @@ body {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 17px;
   }
 
 
 #clock-button {
-    left: 370px;
+    top: -80px;
+    left: 10px;
 }
 
 #stopwatch-button {
-    left: 570px;
+    top: -80px;
+    right: 180px;
 }
 
 #timer-button {
-    right: 370px;
+    top: -80px;
+    right: 30px;
 }

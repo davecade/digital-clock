@@ -16,8 +16,17 @@ const clockButton = document.getElementById('clock-button');
 const stopwatchButton = document.getElementById('stopwatch-button');
 const timerButton = document.getElementById('timer-button');
 
+let clockInProgress = true;
+let stopwatchInProgress = false;
+let timerInProgress = false;
+let start = 0;
 
 function clock() {
+    
+    if (clockInProgress===false) {
+        return 0;
+    }
+
     batch_div.innerHTML = 'Clock';
     let current_time = new Date();
     let refresh=0; // Refresh rate in milli seconds
@@ -38,6 +47,7 @@ function clock() {
     }
 
     setTimeout('clock()',refresh) //calls clock function again to refresh
+
 }
 
 function checkZero(time) {
@@ -46,9 +56,12 @@ function checkZero(time) {
 }
     
 function stopwatch(){
+    
+    if (stopwatchInProgress===false) {
+        return 0;
+    }
 
     batch_div.innerHTML = 'Stopwatch';
-
     if (miliseconds_stopWatch===100) {
         miliseconds_stopWatch=0;
         seconds_stopWatch++;
@@ -89,15 +102,41 @@ function stopwatch(){
         
 }
 
-function main() {
-    clock();
-    clockButton.addEventListener('click', () => clock())
-    stopwatchButton.addEventListener('click', () => setInterval(stopwatch, 10))
-    timerButton.addEventListener('click', () => game('scissors'))
+function timer() {
+    console.log('timer')
 }
 
+function reset() {
+    hours_span.innerHTML = "00";
+    minutes_span.innerHTML = "00";
+    seconds_span.innerHTML = "00";
+    miliseconds_div.innerHTML = "";
+}
 
-//main();
+function main() {
+    clock();
+
+    clockButton.addEventListener('click', () => {
+        stopwatchInProgress = false;
+        clockInProgress = true;
+        reset();
+        clock();
+    })
+
+    stopwatchButton.addEventListener('click', () => {
+        clockInProgress=false;
+        reset();
+        if (stopwatchInProgress===false) {
+            stopwatchInProgress = true;
+            start = setInterval(stopwatch, 10);
+        } else {
+            clearInterval(start);
+        }
+    })
+
+    timerButton.addEventListener('click', () => timer())
+}
+
+main();
 
 
-//setInterval(stopwatch, 10);
