@@ -3,7 +3,7 @@ const hours_span = document.getElementById('hours');
 const minutes_span = document.getElementById('minutes');
 const seconds_span = document.getElementById('seconds');
 const miliseconds_div = document.getElementById('miliseconds');
-const batch_div = document.getElementById('badge')
+
 
 //Stopwatch Variables
 let miliseconds_stopWatch = 0;
@@ -15,38 +15,40 @@ let hours_stopWatch = 0;
 const clockButton = document.getElementById('clock-button');
 const stopwatchButton = document.getElementById('stopwatch-button');
 const timerButton = document.getElementById('timer-button');
-
+const startButton = document.getElementById('inner-circle')
 let clockInProgress = true;
 let stopwatchInProgress = false;
 let timerInProgress = false;
 let start = 0;
+let startClock = 0
 
 function clock() {
-    
-    if (clockInProgress===false) {
+    console.log("clockInProgress", clockInProgress)
+
+    if (clockInProgress) {
+        let current_time = new Date();
+        let refresh=0; // Refresh rate in milli seconds
+
+        if (current_time.getHours() < 10) {
+            hours_span.innerHTML = `0${current_time.getHours()}`;
+        } else {
+            hours_span.innerHTML = current_time.getHours();
+        }
+
+        if (current_time.getMinutes() < 10) {minutes_span.innerHTML = `0${current_time.getMinutes()}`;}
+        else {minutes_span.innerHTML = current_time.getMinutes();}
+            
+        if (current_time.getSeconds() < 10) {
+            seconds_span.innerHTML = `0${current_time.getSeconds()}`;
+        } else {
+            seconds_span.innerHTML = current_time.getSeconds();
+        }
+
+        startClock = setTimeout('clock()',refresh) //calls clock function again to refresh
+    } else {
+        clearTimeout(startClock)
         return 0;
     }
-
-    batch_div.innerHTML = 'Clock';
-    let current_time = new Date();
-    let refresh=0; // Refresh rate in milli seconds
-
-    if (current_time.getHours() < 10) {
-        hours_span.innerHTML = `0${current_time.getHours()}`;
-    } else {
-        hours_span.innerHTML = current_time.getHours();
-    }
-
-    if (current_time.getMinutes() < 10) {minutes_span.innerHTML = `0${current_time.getMinutes()}`;}
-    else {minutes_span.innerHTML = current_time.getMinutes();}
-        
-    if (current_time.getSeconds() < 10) {
-        seconds_span.innerHTML = `0${current_time.getSeconds()}`;
-    } else {
-        seconds_span.innerHTML = current_time.getSeconds();
-    }
-
-    setTimeout('clock()',refresh) //calls clock function again to refresh
 
 }
 
@@ -56,12 +58,7 @@ function checkZero(time) {
 }
     
 function stopwatch(){
-    
-    if (stopwatchInProgress===false) {
-        return 0;
-    }
 
-    batch_div.innerHTML = 'Stopwatch';
     if (miliseconds_stopWatch===100) {
         miliseconds_stopWatch=0;
         seconds_stopWatch++;
@@ -114,23 +111,28 @@ function reset() {
 }
 
 function main() {
-    clock();
+
+
+    if (clockInProgress) {
+        clock();
+    }
 
     clockButton.addEventListener('click', () => {
         stopwatchInProgress = false;
         clockInProgress = true;
-        reset();
         clock();
     })
 
-    stopwatchButton.addEventListener('click', () => {
+    startButton.addEventListener('click', () => {
         clockInProgress=false;
         reset();
         if (stopwatchInProgress===false) {
             stopwatchInProgress = true;
+
             start = setInterval(stopwatch, 10);
         } else {
             clearInterval(start);
+            stopwatchInProgress = false;
         }
     })
 

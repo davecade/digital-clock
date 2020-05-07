@@ -7,20 +7,25 @@
 
     <body>
         <div class="navbar">
+            <div class="dropdown">
             <a href="timer.html">Timer</a>
             <a href="stopwatch.html" id="stopwatch-button">Stopwatch</a>
             <a href="index.html" id="clock-button">Clock</a>
+            </div>
           </div>
-
 
         <div class="grid">
             <div class="clock-box">
-                <div id="clock-badge">Clock</div>
+                <div id="stopwatch-badge">Stopwatch</div>
                 <div class="clock">
                     <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
                     <div id="miliseconds"></div>
                 </div>
             </div>
+        
+        <div id="main-circle">
+            <div id="inner-circle">START</div>
+        </div>
 
         </div>
         <script src="app.js" charset="utf-8"></script>
