@@ -21,6 +21,7 @@ const clockMode = document.getElementById('clock-mode');
 const stopwatchMode = document.getElementById('stopwatch-mode');
 
 //Start and Stop Buttons
+const startButtonBorder = document.getElementById('main-start')
 const startButton = document.getElementById('inner-start');
 const resetButton = document.getElementById('inner-reset');
 const syncButton = document.getElementById('inner-sync');
@@ -120,12 +121,29 @@ function resetStopwatch() {
     seconds_stopWatch = 0;
     minutes_stopWatch = 0;
     hours_stopWatch = 0;
+    transformToStart();
+}
+
+function transformToStop() {
+    startButton.classList.remove('inner-start')
+    startButtonBorder.classList.remove('main-start');
+    startButton.classList.add('inner-stop')
+    startButtonBorder.classList.add('main-stop');
+    startButton.innerHTML = "STOP";
+}
+
+function transformToStart() {
+    startButton.classList.remove('inner-stop')
+    startButtonBorder.classList.remove('main-stop');
+    startButton.classList.add('inner-start')
+    startButtonBorder.classList.add('main-start');
+    startButton.innerHTML = "START";
 }
 
 function main() {
 
     if (clockPage) {
-
+        clock();
         syncButton.addEventListener('click', () => {
             stopwatchInProgress = false;
             clockInProgress = true;
@@ -137,10 +155,12 @@ function main() {
             clockInProgress=false;
             if (stopwatchInProgress===false) {
                 stopwatchInProgress = true;
+                transformToStop();
                 startStopwatch = setInterval(stopwatch, 10);
             } else {
                 clearInterval(startStopwatch);
                 stopwatchInProgress = false;
+                transformToStart();               
             }
         })
 

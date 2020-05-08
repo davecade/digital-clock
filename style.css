@@ -8,7 +8,26 @@
 }
 
 body {
-    background: #292C34;
+    /*background: #292C34;*/
+    background: rgba(0, 0, 0, 0.87);
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.151);
+}
+
+.navbar a {
+  float: right;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 0, 0, 0.671);
 }
 
 .grid{
@@ -23,10 +42,10 @@ body {
 .clock-box{
     position: relative;
     grid-area: 2 / 2 / span 1 / span 1;
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.747);
     border-radius: 10px;
     margin: 20px;
-    border: gray;
+    border: #E2584D;
     text-align: center;
     color: black;
     width: 500px;
@@ -36,7 +55,8 @@ body {
 }
 
 .clock {
-    background: rgba(255, 255, 255, 0.767);
+  background: white;
+    /*background: rgba(255, 255, 255, 0.767);*/
     border-radius: 10px;
     width: 500px;
     height: 150px;
@@ -91,7 +111,6 @@ body {
 
 .button {
     position: absolute;
-    background-color: #A01B11;
     border-radius: 20px;
     border: none;
     color: white;
@@ -121,83 +140,6 @@ body {
 
 
 
-
-
-
-
-/* Navbar container */
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  /* Links inside the navbar */
-  .navbar a {
-    float: right;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* The dropdown container */
-  .dropdown {
-    float: right;
-    overflow: hidden;
-  }
-  
-  /* Dropdown button */
-  .dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
-  }
-  
-  /* Add a red background color to navbar links on hover */
-  .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-  }
-  
-  /* Dropdown content (hidden by default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  /* Add a grey background color to dropdown links on hover */
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-
-
-
-
 @import url("https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext");
 
 .buttons {
@@ -206,7 +148,7 @@ body {
   align-items: center;
 }
 
-#main-start {
+.main-start {
   width: 200px;
   height: 200px;
   margin: 10% auto;
@@ -214,13 +156,13 @@ body {
   background: #2dc937;
   border-radius: 150px;
  /* box-shadow: 1px 5px 1px #CE152A;*/
- box-shadow: 1px 5px 1px #2dc937;
+  box-shadow: 1px 5px 1px #2dc937;
   transition: all .15s ease-in;
-  
+  margin: 20px 40px;
 }
 
 
-#inner-start {
+.inner-start {
   position: relative;
   color: #FFF;
   text-align: center;
@@ -238,26 +180,28 @@ body {
   top: 25px;
 }
 
-#main-start:hover {
+.main-start:hover {
   /*box-shadow: 1px 3px 1px #CE152A;*/
   box-shadow: 1px 3px 1px #2dc937;
   cursor: pointer;
+  transform: scale(1.1);
+  transition: ease 0.5s;
 }
 
 
-#main-circle-prog {
+.main-stop {
+    background: #cc3232;
     width: 200px;
     height: 200px;
     margin: 10% auto;
-    background: linear-gradient(#DF293A, #EF495A);
     border-radius: 150px;
-    box-shadow: 1px 5px 1px #CE152A;
+    box-shadow: 1px 5px 1px #cc3232;
     transition: all .15s ease-in;
-    grid-area: 3 / 2 / 4 / 3;
+    margin: 20px 40px;
   }
-  
-  
-  #inner-circle-prog {
+
+  .inner-stop {
+    background: #cc3232;
     position: relative;
     color: #FFF;
     text-align: center;
@@ -268,17 +212,18 @@ body {
     width: 150px;
     height: 90px;
     border-radius: 120px;
-    background: radial-gradient(#EF495A, #DE2839);
+    /*background: radial-gradient(#EF495A, #DE2839);*/
     box-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15) inset;
     margin: 0 auto;
     top: 25px;
   }
-  
-  #main-circle-prog:hover {
-    box-shadow: 1px 3px 1px #CE152A;
-    cursor: pointer;
-  }
 
+  .main-stop:hover {
+    box-shadow: 1px 3px 1px #cc3232;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: ease 0.5s;
+  }
 
 
   #main-reset {
@@ -292,6 +237,7 @@ body {
    box-shadow: 1px 5px 1px #e7b416;
     transition: all .15s ease-in;
     grid-area: 4 / 2 / 4 / 3;
+    margin: 20px 40px;
   }
   
   
@@ -317,6 +263,8 @@ body {
     /*box-shadow: 1px 3px 1px #CE152A;*/
     box-shadow: 1px 3px 1px#e7b416;
     cursor: pointer;
+    transform: scale(1.1);
+    transition: ease 0.5s;
   }
 
   
@@ -356,5 +304,6 @@ body {
     /*box-shadow: 1px 3px 1px #CE152A;*/
     box-shadow: 1px 3px 1px #2dc937;
     cursor: pointer;
+    transform: scale(1.1);
+    transition: ease 0.5s;
   }
-  
