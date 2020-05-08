@@ -1,3 +1,8 @@
+//Checks what page you are on
+const clockPage = document.getElementById('clock-page')
+const stopwatchPage = document.getElementById('stopwatch-page')
+const timerPage = document.getElementById('timer-page')
+
 //Display Variables
 const hours_span = document.getElementById('hours');
 const minutes_span = document.getElementById('minutes');
@@ -12,18 +17,22 @@ let minutes_stopWatch = 0;
 let hours_stopWatch = 0;
 
 //Modes
-const clockButton = document.getElementById('clock-button');
-const stopwatchButton = document.getElementById('stopwatch-button');
-const timerButton = document.getElementById('timer-button');
-const startButton = document.getElementById('inner-circle')
+const clockMode = document.getElementById('clock-mode');
+const stopwatchMode = document.getElementById('stopwatch-mode');
+
+//Start and Stop Buttons
+const startButton = document.getElementById('inner-start');
+const resetButton = document.getElementById('inner-reset');
+const syncButton = document.getElementById('inner-sync');
+
+//State of each mode
 let clockInProgress = true;
 let stopwatchInProgress = false;
 let timerInProgress = false;
-let start = 0;
-let startClock = 0
+let startStopwatch = 0;
+let startClock = 0;
 
 function clock() {
-    console.log("clockInProgress", clockInProgress)
 
     if (clockInProgress) {
         let current_time = new Date();
@@ -47,7 +56,6 @@ function clock() {
         startClock = setTimeout('clock()',refresh) //calls clock function again to refresh
     } else {
         clearTimeout(startClock)
-        return 0;
     }
 
 }
@@ -103,42 +111,54 @@ function timer() {
     console.log('timer')
 }
 
-function reset() {
+function resetStopwatch() {
     hours_span.innerHTML = "00";
     minutes_span.innerHTML = "00";
     seconds_span.innerHTML = "00";
     miliseconds_div.innerHTML = "";
+    miliseconds_stopWatch = 0;
+    seconds_stopWatch = 0;
+    minutes_stopWatch = 0;
+    hours_stopWatch = 0;
 }
 
 function main() {
 
+    if (clockPage) {
 
-    if (clockInProgress) {
-        clock();
+        syncButton.addEventListener('click', () => {
+            stopwatchInProgress = false;
+            clockInProgress = true;
+            clock();
+        })
+
+    } else if (stopwatchPage) {
+        startButton.addEventListener('click', () => {
+            clockInProgress=false;
+            if (stopwatchInProgress===false) {
+                stopwatchInProgress = true;
+                startStopwatch = setInterval(stopwatch, 10);
+            } else {
+                clearInterval(startStopwatch);
+                stopwatchInProgress = false;
+            }
+        })
+
+        resetButton.addEventListener('click', () => {
+            clearInterval(startStopwatch);
+            stopwatchInProgress = false;
+            resetStopwatch();
+        })
+
+    } else if (timerPage) {
+
     }
 
-    clockButton.addEventListener('click', () => {
-        stopwatchInProgress = false;
-        clockInProgress = true;
-        clock();
-    })
 
-    startButton.addEventListener('click', () => {
-        clockInProgress=false;
-        reset();
-        if (stopwatchInProgress===false) {
-            stopwatchInProgress = true;
-
-            start = setInterval(stopwatch, 10);
-        } else {
-            clearInterval(start);
-            stopwatchInProgress = false;
-        }
-    })
-
-    timerButton.addEventListener('click', () => timer())
 }
 
+
 main();
+
 
 

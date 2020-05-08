@@ -77,7 +77,7 @@ body {
     height: 40px;
     width: auto;
     top: -13px;
-    right: 185px;
+    right: 190px;
     background-color: #E2584D;
     color: white;
 }
@@ -200,8 +200,13 @@ body {
 
 @import url("https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext");
 
+.buttons {
+  grid-area: 3 / 2 / 4 / 3;
+  display: inline-flex;
+  align-items: center;
+}
 
-#main-circle {
+#main-start {
   width: 200px;
   height: 200px;
   margin: 10% auto;
@@ -211,11 +216,11 @@ body {
  /* box-shadow: 1px 5px 1px #CE152A;*/
  box-shadow: 1px 5px 1px #2dc937;
   transition: all .15s ease-in;
-  grid-area: 3 / 2 / 4 / 3;
+  
 }
 
 
-#inner-circle {
+#inner-start {
   position: relative;
   color: #FFF;
   text-align: center;
@@ -233,7 +238,7 @@ body {
   top: 25px;
 }
 
-#main-circle:hover {
+#main-start:hover {
   /*box-shadow: 1px 3px 1px #CE152A;*/
   box-shadow: 1px 3px 1px #2dc937;
   cursor: pointer;
@@ -273,3 +278,83 @@ body {
     box-shadow: 1px 3px 1px #CE152A;
     cursor: pointer;
   }
+
+
+
+  #main-reset {
+    width: 200px;
+    height: 200px;
+
+    /*background: linear-gradient(#DF293A, #EF495A);*/
+    background: #e7b416;
+    border-radius: 150px;
+   /* box-shadow: 1px 5px 1px #CE152A;*/
+   box-shadow: 1px 5px 1px #e7b416;
+    transition: all .15s ease-in;
+    grid-area: 4 / 2 / 4 / 3;
+  }
+  
+  
+  #inner-reset {
+    position: relative;
+    color: #FFF;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "Lato", Verdana, sans-serif;
+    font-size: 30px;
+    padding-top: 60px;
+    width: 150px;
+    height: 90px;
+    border-radius: 120px;
+    /*background: radial-gradient(#EF495A, #DE2839);*/
+    background: #e7b416;
+    box-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15) inset;
+    margin: 0 auto;
+    top: 25px;
+  }
+  
+  #main-reset:hover {
+    /*box-shadow: 1px 3px 1px #CE152A;*/
+    box-shadow: 1px 3px 1px#e7b416;
+    cursor: pointer;
+  }
+
+  
+  #main-sync {
+    width: 200px;
+    height: 200px;
+    margin: 10% auto;
+    /*background: linear-gradient(#DF293A, #EF495A);*/
+    background: #2dc937;
+    border-radius: 150px;
+   /* box-shadow: 1px 5px 1px #CE152A;*/
+   box-shadow: 1px 5px 1px #2dc937;
+    transition: all .15s ease-in;
+    grid-area: 3 / 2 / 4 / 3;
+  }
+  
+  
+  #inner-sync {
+    position: relative;
+    color: #FFF;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "Lato", Verdana, sans-serif;
+    font-size: 30px;
+    padding-top: 60px;
+    width: 150px;
+    height: 90px;
+    border-radius: 120px;
+    /*background: radial-gradient(#EF495A, #DE2839);*/
+    background: #2dc937;
+    box-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15) inset;
+    margin: 0 auto;
+    top: 25px;
+  }
+  
+  #main-sync:hover {
+    /*box-shadow: 1px 3px 1px #CE152A;*/
+    box-shadow: 1px 3px 1px #2dc937;
+    cursor: pointer;
+  }
+  

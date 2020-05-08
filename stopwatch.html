@@ -2,15 +2,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>Digital Clock</title>
+        <title id="stopwatch-page">Digital Clock</title>
     </head>
 
     <body>
         <div class="navbar">
-            <div class="dropdown">
             <a href="timer.html">Timer</a>
-            <a href="stopwatch.html" id="stopwatch-button">Stopwatch</a>
-            <a href="index.html" id="clock-button">Clock</a>
+            <a href="stopwatch.html" id="stopwatch-mode">Stopwatch</a>
+            <a href="index.html" id="clock-mode">Clock</a>
             </div>
           </div>
 
@@ -22,10 +21,16 @@
                     <div id="miliseconds"></div>
                 </div>
             </div>
-        
-        <div id="main-circle">
-            <div id="inner-circle">START</div>
-        </div>
+            
+            <div class="buttons">
+                <div id="main-start">
+                    <div id="inner-start">START</div>
+                </div>
+
+                <div id="main-reset">
+                    <div id="inner-reset">RESET</div>
+                </div>
+            </div>
 
         </div>
         <script src="app.js" charset="utf-8"></script>
