@@ -9,16 +9,17 @@ const minutes_span = document.getElementById('minutes');
 const seconds_span = document.getElementById('seconds');
 const miliseconds_div = document.getElementById('miliseconds');
 
+//Timer input
+const seconds_input = document.getElementById('seconds-input')
+const minutes_input = document.getElementById('minutes-input')
+const hours_input = document.getElementById('hours-input')
+
 
 //Stopwatch Variables
 let miliseconds_stopWatch = 0;
 let seconds_stopWatch = 0;
 let minutes_stopWatch = 0;
 let hours_stopWatch = 0;
-
-//Modes
-const clockMode = document.getElementById('clock-mode');
-const stopwatchMode = document.getElementById('stopwatch-mode');
 
 //Start and Stop Buttons
 const startButtonBorder = document.getElementById('main-start')
@@ -109,7 +110,22 @@ function stopwatch(){
 }
 
 function timer() {
-    console.log('timer')
+
+    if (miliseconds_stopWatch===100) {
+        miliseconds_stopWatch=0;
+        seconds_stopWatch--;
+        if (seconds_stopWatch===0) {
+            console.log("GOGOGOGO")
+            clearInterval(startStopwatch);
+            timerInProgress = false;
+            transformToStart();
+            seconds_input.placeholder = "00"
+        } else {
+            seconds_input.placeholder = checkZero(seconds_stopWatch);
+        }
+        
+    }
+    miliseconds_stopWatch += 1
 }
 
 function resetStopwatch() {
@@ -117,6 +133,17 @@ function resetStopwatch() {
     minutes_span.innerHTML = "00";
     seconds_span.innerHTML = "00";
     miliseconds_div.innerHTML = "";
+    miliseconds_stopWatch = 0;
+    seconds_stopWatch = 0;
+    minutes_stopWatch = 0;
+    hours_stopWatch = 0;
+    transformToStart();
+}
+
+function resetTimer() {
+    seconds_input.placeholder = "00";
+    minutes_input.placeholder = "00";
+    hours_input.placeholder = "00";
     miliseconds_stopWatch = 0;
     seconds_stopWatch = 0;
     minutes_stopWatch = 0;
@@ -143,16 +170,15 @@ function transformToStart() {
 function main() {
 
     if (clockPage) {
+        clockInProgress = true;
+        stopwatchInProgress = false;
+        timerProgress = false
         clock();
-        syncButton.addEventListener('click', () => {
-            stopwatchInProgress = false;
-            clockInProgress = true;
-            clock();
-        })
 
     } else if (stopwatchPage) {
         startButton.addEventListener('click', () => {
             clockInProgress=false;
+            timerProgress = false
             if (stopwatchInProgress===false) {
                 stopwatchInProgress = true;
                 transformToStop();
@@ -171,12 +197,35 @@ function main() {
         })
 
     } else if (timerPage) {
+        startButton.addEventListener('click', () => {
+            clockInProgress=false;
+            stopwatchInProgress = false
+            if (timerInProgress===false) {
+                timerInProgress = true;
+                transformToStop();
+                if(seconds_stopWatch===0 && minutes_stopWatch===0 && hours_stopWatch===0) {
+                    seconds_stopWatch = seconds_input.value;
+                    minutes_stopWatch = minutes_input.value;
+                    hours_stopWatch = hours_input.value;
+                    seconds_input.value = "";
+                    minutes_input.value = "";
+                    hours_input.value = "";
+                }
+                startStopwatch = setInterval(timer, 10);
+            } else {
+                clearInterval(startStopwatch);
+                timerInProgress = false;
+                transformToStart();       
+            }
+        })
 
+        resetButton.addEventListener('click', () => {
+            clearInterval(startStopwatch);
+            timerInProgress = false;
+            resetTimer();
+        })
     }
-
-
 }
-
 
 main();
 

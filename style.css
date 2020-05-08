@@ -50,14 +50,13 @@ body {
     color: black;
     width: 500px;
     height: 150px;
-    font-size: 46px;
+    
     padding: 15px 20px;
 }
 
 .clock {
-  background: white;
+    background: white;
     /*background: rgba(255, 255, 255, 0.767);*/
-    border-radius: 10px;
     width: 500px;
     height: 150px;
     font-size: 100px;
@@ -136,12 +135,6 @@ body {
     right: 30px;
 }
 
-
-
-
-
-@import url("https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext");
-
 .buttons {
   grid-area: 3 / 2 / 4 / 3;
   display: inline-flex;
@@ -153,7 +146,7 @@ body {
   height: 200px;
   margin: 10% auto;
   /*background: linear-gradient(#DF293A, #EF495A);*/
-  background: #2dc937;
+  background: #2dc937ec;
   border-radius: 150px;
  /* box-shadow: 1px 5px 1px #CE152A;*/
   box-shadow: 1px 5px 1px #2dc937;
@@ -190,7 +183,7 @@ body {
 
 
 .main-stop {
-    background: #cc3232;
+    background: #cc3232e8;
     width: 200px;
     height: 200px;
     margin: 10% auto;
@@ -231,10 +224,10 @@ body {
     height: 200px;
 
     /*background: linear-gradient(#DF293A, #EF495A);*/
-    background: #e7b416;
+    background: rgba(0, 0, 255, 0.863);
     border-radius: 150px;
    /* box-shadow: 1px 5px 1px #CE152A;*/
-   box-shadow: 1px 5px 1px #e7b416;
+   box-shadow: 1px 5px 1px blue;
     transition: all .15s ease-in;
     grid-area: 4 / 2 / 4 / 3;
     margin: 20px 40px;
@@ -253,7 +246,7 @@ body {
     height: 90px;
     border-radius: 120px;
     /*background: radial-gradient(#EF495A, #DE2839);*/
-    background: #e7b416;
+    background: blue;
     box-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15) inset;
     margin: 0 auto;
     top: 25px;
@@ -261,49 +254,36 @@ body {
   
   #main-reset:hover {
     /*box-shadow: 1px 3px 1px #CE152A;*/
-    box-shadow: 1px 3px 1px#e7b416;
+    box-shadow: 1px 3px 1px blue;
     cursor: pointer;
     transform: scale(1.1);
     transition: ease 0.5s;
   }
 
-  
-  #main-sync {
-    width: 200px;
-    height: 200px;
-    margin: 10% auto;
-    /*background: linear-gradient(#DF293A, #EF495A);*/
-    background: #2dc937;
-    border-radius: 150px;
-   /* box-shadow: 1px 5px 1px #CE152A;*/
-   box-shadow: 1px 5px 1px #2dc937;
-    transition: all .15s ease-in;
-    grid-area: 3 / 2 / 4 / 3;
-  }
-  
-  
-  #inner-sync {
-    position: relative;
-    color: #FFF;
+  input {
+    display: inline-block;
     text-align: center;
-    color: rgba(255, 255, 255, 0.85);
-    font-family: "Lato", Verdana, sans-serif;
-    font-size: 30px;
-    padding-top: 60px;
-    width: 150px;
-    height: 90px;
-    border-radius: 120px;
-    /*background: radial-gradient(#EF495A, #DE2839);*/
-    background: #2dc937;
-    box-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15) inset;
-    margin: 0 auto;
-    top: 25px;
+    border: none;
+    width: 126px;
+    height: 100px;
+    font-size: 92px;
+    align-items: center;
+    justify-items: center;
   }
-  
-  #main-sync:hover {
-    /*box-shadow: 1px 3px 1px #CE152A;*/
-    box-shadow: 1px 3px 1px #2dc937;
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: ease 0.5s;
+
+  ::placeholder {
+    color: black;
   }
+
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

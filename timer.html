@@ -2,29 +2,33 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>Digital Clock</title>
+        <title id="timer-page">Digital Clock</title>
     </head>
 
     <body>
         <div class="navbar">
-            <div class="dropdown"></div>
             <a href="timer.html">Timer</a>
             <a href="stopwatch.html">Stopwatch</a>
             <a href="index.html">Clock</a>
-            </div>
-          </div>
+        </div>
 
         <div class="grid">
             <div class="clock-box">
                 <div id="timer-badge">Timer</div>
                 <div class="clock">
-                    <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-                    <div id="miliseconds"></div>
+                    <input type="number" id="hours-input" min="00" max="59" placeholder="00">:<input type="number" id="minutes-input" min="00" max="59" placeholder="00">:<input type="number" id="seconds-input" min="00" max="59" placeholder="00">
                 </div>
             </div>
-        
 
+            <div class="buttons">
+                <div id="main-start" class="main-start">
+                    <div id="inner-start" class="inner-start">START</div>
+                </div>
 
+                <div id="main-reset">
+                    <div id="inner-reset">RESET</div>
+                </div>
+            </div>
         </div>
         <script src="app.js" charset="utf-8"></script>
     </body>
