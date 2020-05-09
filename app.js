@@ -16,10 +16,10 @@ const hours_input = document.getElementById('hours-input')
 
 
 //Stopwatch Variables
-let miliseconds_stopWatch = 0;
-let seconds_stopWatch = 0;
-let minutes_stopWatch = 0;
-let hours_stopWatch = 0;
+let miliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
 
 //Start and Stop Buttons
 const startButtonBorder = document.getElementById('main-start')
@@ -69,63 +69,82 @@ function checkZero(time) {
     
 function stopwatch(){
 
-    if (miliseconds_stopWatch===100) {
-        miliseconds_stopWatch=0;
-        seconds_stopWatch++;
-        if (seconds_stopWatch===60) {
+    if (miliseconds===100) {
+        miliseconds=0;
+        seconds++;
+        if (seconds===60) {
             seconds_span.innerHTML = checkZero(0);
         } else {
-            seconds_span.innerHTML = checkZero(seconds_stopWatch);
+            seconds_span.innerHTML = checkZero(seconds);
         }
             
     }
 
-    if (seconds_stopWatch===60) {
-        seconds_stopWatch=0;
-        minutes_stopWatch++;
-        if (minutes_stopWatch===60) {
+    if (seconds===60) {
+        seconds=0;
+        minutes++;
+        if (minutes===60) {
             minutes_span.innerHTML = checkZero(0);
         } else {
-            minutes_span.innerHTML = checkZero(minutes_stopWatch);
+            minutes_span.innerHTML = checkZero(minutes);
         }
     }
 
-    if (minutes_stopWatch===60) {
-        minutes_stopWatch=0;
-        hours_stopWatch++;
-        if (hours_stopWatch===60) {
+    if (minutes===60) {
+        minutes=0;
+        hours++;
+        if (hours===60) {
             hours_span.innerHTML = checkZero(0);
         } else {
-            hours_span.innerHTML = checkZero(hours_stopWatch);
+            hours_span.innerHTML = checkZero(hours);
         }
     }
 
-    miliseconds_stopWatch += 1
-    if (miliseconds_stopWatch===100) {
+    miliseconds += 1
+    if (miliseconds===100) {
         miliseconds_div.innerHTML = checkZero(0);
     } else {
-        miliseconds_div.innerHTML = checkZero(miliseconds_stopWatch);
+        miliseconds_div.innerHTML = checkZero(miliseconds);
     }
         
 }
 
 function timer() {
-
-    if (miliseconds_stopWatch===100) {
-        miliseconds_stopWatch=0;
-        seconds_stopWatch--;
-        if (seconds_stopWatch===0) {
-            console.log("GOGOGOGO")
-            clearInterval(startStopwatch);
-            timerInProgress = false;
-            transformToStart();
-            seconds_input.placeholder = "00"
+    if(miliseconds===100) {
+        console.log(seconds)
+        console.log(minutes)
+        console.log(hours)
+        miliseconds=0;
+        seconds--;
+        if (seconds===0) {
+            if(seconds===0 && minutes===0 && hours===0) {
+                timerInProgress = false;
+                clearInterval(startStopwatch);
+                resetTimer();
+            } else if (minutes>0 || hours >0) {
+                seconds=60;
+                seconds_input.placeholder = "00";
+            }
         } else {
-            seconds_input.placeholder = checkZero(seconds_stopWatch);
+            seconds_input.placeholder = checkZero(seconds)
         }
+
+        if (seconds===59) {
+            minutes--;
+        }
+
+        if(minutes<0 && hours>0) {
+            minutes = 59
+        } 
         
+        if (minutes===59 && seconds===59) {
+            hours--;
+        }
+
+        minutes_input.placeholder = checkZero(minutes)
+        hours_input.placeholder = checkZero(hours)
     }
-    miliseconds_stopWatch += 1
+    miliseconds += 1;
 }
 
 function resetStopwatch() {
@@ -133,10 +152,10 @@ function resetStopwatch() {
     minutes_span.innerHTML = "00";
     seconds_span.innerHTML = "00";
     miliseconds_div.innerHTML = "";
-    miliseconds_stopWatch = 0;
-    seconds_stopWatch = 0;
-    minutes_stopWatch = 0;
-    hours_stopWatch = 0;
+    miliseconds = 0;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
     transformToStart();
 }
 
@@ -144,10 +163,10 @@ function resetTimer() {
     seconds_input.placeholder = "00";
     minutes_input.placeholder = "00";
     hours_input.placeholder = "00";
-    miliseconds_stopWatch = 0;
-    seconds_stopWatch = 0;
-    minutes_stopWatch = 0;
-    hours_stopWatch = 0;
+    miliseconds = 0;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
     transformToStart();
 }
 
@@ -165,6 +184,12 @@ function transformToStart() {
     startButton.classList.add('inner-start')
     startButtonBorder.classList.add('main-start');
     startButton.innerHTML = "START";
+}
+
+function zeroNull(number) {
+    if(number===null || number===NaN || number==="") {
+        return 0;
+    } else return number;
 }
 
 function main() {
@@ -203,10 +228,10 @@ function main() {
             if (timerInProgress===false) {
                 timerInProgress = true;
                 transformToStop();
-                if(seconds_stopWatch===0 && minutes_stopWatch===0 && hours_stopWatch===0) {
-                    seconds_stopWatch = seconds_input.value;
-                    minutes_stopWatch = minutes_input.value;
-                    hours_stopWatch = hours_input.value;
+                if(seconds===0 && minutes===0 && hours===0){
+                    seconds = zeroNull(seconds_input.value);
+                    minutes = zeroNull(minutes_input.value);
+                    hours = zeroNull(hours_input.value);
                     seconds_input.value = "";
                     minutes_input.value = "";
                     hours_input.value = "";
@@ -215,7 +240,7 @@ function main() {
             } else {
                 clearInterval(startStopwatch);
                 timerInProgress = false;
-                transformToStart();       
+                transformToStart();
             }
         })
 
