@@ -63,8 +63,9 @@ function clock() {
 }
 
 function checkZero(time) {
-    if (time < 10) {return `0${time}`;}
-    else {return time;}
+    if (time < 10) {
+        return `0${time}`;
+    } else {return time;}
 }
     
 function stopwatch(){
@@ -110,23 +111,22 @@ function stopwatch(){
 }
 
 function timer() {
+    seconds_input.value = checkZero(seconds)
+    minutes_input.value = checkZero(minutes)
+    hours_input.value = checkZero(hours)
+
+    miliseconds++;
     if(miliseconds===100) {
-        console.log(seconds)
-        console.log(minutes)
-        console.log(hours)
         miliseconds=0;
         seconds--;
-        if (seconds===0) {
-            if(seconds===0 && minutes===0 && hours===0) {
+        if (seconds<0) {
+            if(seconds<=0 && minutes<=0 && hours<=0) {
                 timerInProgress = false;
                 clearInterval(startStopwatch);
                 resetTimer();
             } else if (minutes>0 || hours >0) {
-                seconds=60;
-                seconds_input.placeholder = "00";
+                seconds=59;
             }
-        } else {
-            seconds_input.placeholder = checkZero(seconds)
         }
 
         if (seconds===59) {
@@ -140,11 +140,8 @@ function timer() {
         if (minutes===59 && seconds===59) {
             hours--;
         }
-
-        minutes_input.placeholder = checkZero(minutes)
-        hours_input.placeholder = checkZero(hours)
     }
-    miliseconds += 1;
+    
 }
 
 function resetStopwatch() {
@@ -160,9 +157,9 @@ function resetStopwatch() {
 }
 
 function resetTimer() {
-    seconds_input.placeholder = "00";
-    minutes_input.placeholder = "00";
-    hours_input.placeholder = "00";
+    seconds_input.value = "";
+    minutes_input.value = "";
+    hours_input.value = "";
     miliseconds = 0;
     seconds = 0;
     minutes = 0;
@@ -189,7 +186,20 @@ function transformToStart() {
 function zeroNull(number) {
     if(number===null || number===NaN || number==="") {
         return 0;
-    } else return number;
+    } else if (number.length>=2) {
+        for (let i=0; i<number.length-2; i++){
+            if (number[i] != 0) {
+                return number.slice(i)
+            } 
+        }
+
+        number = number.slice(number.length-2)
+        if (number[0]==0) {
+            return number[1]
+        }
+    }
+
+    return number;
 }
 
 function main() {
@@ -232,9 +242,14 @@ function main() {
                     seconds = zeroNull(seconds_input.value);
                     minutes = zeroNull(minutes_input.value);
                     hours = zeroNull(hours_input.value);
-                    seconds_input.value = "";
-                    minutes_input.value = "";
-                    hours_input.value = "";
+                    // seconds_input.value = "";
+                    // minutes_input.value = "";
+                    // hours_input.value = "";
+                }
+
+                if (seconds > 59 || seconds < 0 || minutes > 59 || minutes < 0 || hours > 59 || hours < 0) {
+                    alert("Invalid Input")
+                    resetTimer();
                 }
                 startStopwatch = setInterval(timer, 10);
             } else {
