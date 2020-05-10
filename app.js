@@ -72,6 +72,13 @@ function checkZero(time) {
     
 function stopwatch(){
 
+    miliseconds++;
+    if (miliseconds===100) {
+        miliseconds_div.innerHTML = checkZero(0);
+    } else {
+        miliseconds_div.innerHTML = checkZero(miliseconds);
+    }
+
     if (miliseconds===100) {
         miliseconds=0;
         seconds++;
@@ -103,12 +110,7 @@ function stopwatch(){
         }
     }
 
-    miliseconds += 1
-    if (miliseconds===100) {
-        miliseconds_div.innerHTML = checkZero(0);
-    } else {
-        miliseconds_div.innerHTML = checkZero(miliseconds);
-    }
+
         
 }
 let asd = 0
@@ -160,7 +162,7 @@ function resetStopwatch() {
     transformToStart();
 }
 
-function resetTimer() {
+function resetTimer(resetButtTrig=false) {
     seconds_input.value = "";
     minutes_input.value = "";
     hours_input.value = "";
@@ -168,9 +170,11 @@ function resetTimer() {
     seconds = 0;
     minutes = 0;
     hours = 0;
-    setTimeout(() => {
-        clockBox.classList.remove('animate__animated', 'animate__heartBeat', 'animate__repeat-3')
-    }, 4000);
+    if (resetButtTrig===false) {
+        setTimeout(() => {
+            clockBox.classList.remove('animate__animated', 'animate__heartBeat', 'animate__repeat-3')
+        }, 4000);
+    }
     transformToStart();
     timerInProgress = false;
 }
@@ -233,7 +237,7 @@ function main() {
             } else {
                 clearInterval(startStopwatch);
                 stopwatchInProgress = false;
-                transformToStart();               
+                transformToStart();
             }
         })
 
@@ -249,14 +253,7 @@ function main() {
 
     } else if (timerPage) {
         startButton.addEventListener('click', () => {
-            clockInProgress=false;
-            stopwatchInProgress = false
-            startButton.classList.add('animate__animated', 'animate__rubberBand')
-            setTimeout(() => {
-                startButton.classList.remove('animate__animated', 'animate__rubberBand')
-            }, 1000)
             if (timerInProgress===false) {
-                transformToStop();
                 if(seconds===0 && minutes===0 && hours===0){
                     seconds = zeroNull(seconds_input.value);
                     minutes = zeroNull(minutes_input.value);
@@ -271,6 +268,13 @@ function main() {
                     timerInProgress = false;
                 } else {
                     timerInProgress = true;
+                    clockInProgress=false;
+                    stopwatchInProgress = false
+                    transformToStop();
+                    startButton.classList.add('animate__animated', 'animate__rubberBand')
+                    setTimeout(() => {
+                        startButton.classList.remove('animate__animated', 'animate__rubberBand')
+                    }, 1000)
                     startStopwatch = setInterval(timer, 10);
                 }
                 
@@ -288,7 +292,8 @@ function main() {
             setTimeout(() => {
                 resetButton.classList.remove('animate__animated', 'animate__rubberBand')
             }, 1000)
-            resetTimer();
+            clockBox.classList.remove('animate__animated', 'animate__heartBeat', 'animate__repeat-3')
+            resetTimer(true);
         })
     }
 }
