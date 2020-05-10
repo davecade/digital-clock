@@ -17,7 +17,7 @@ const hours_input = document.getElementById('hours-input')
 //Timer completed animation
 const clockBox =  document.getElementById('clock-box')
 
-//Stopwatch Variables
+//Clock Variables
 let miliseconds = 0;
 let seconds = 0;
 let minutes = 0;
@@ -34,7 +34,7 @@ let clockInProgress = true;
 let stopwatchInProgress = false;
 let timerInProgress = false;
 let startStopwatch = 0;
-let startClock = 0;
+let startTimer = 0
 
 function clock() {
 
@@ -126,7 +126,7 @@ function timer() {
         if (seconds<0) {
             if(seconds<=0 && minutes<=0 && hours<=0) {
                 timerInProgress = false;
-                clearInterval(startStopwatch);
+                clearInterval(startTimer);
                 clockBox.classList.add('animate__animated', 'animate__heartBeat', 'animate__repeat-3')
 
                 resetTimer()
@@ -210,7 +210,6 @@ function zeroNull(number) {
             return number[1]
         }
     }
-
     return number;
 }
 
@@ -268,25 +267,25 @@ function main() {
                     timerInProgress = false;
                 } else {
                     timerInProgress = true;
-                    clockInProgress=false;
+                    clockInProgress = false;
                     stopwatchInProgress = false
                     transformToStop();
                     startButton.classList.add('animate__animated', 'animate__rubberBand')
                     setTimeout(() => {
                         startButton.classList.remove('animate__animated', 'animate__rubberBand')
                     }, 1000)
-                    startStopwatch = setInterval(timer, 10);
+                    startTimer = setInterval(timer, 10);
                 }
                 
             } else {
-                clearInterval(startStopwatch);
+                clearInterval(startTimer);
                 timerInProgress = false;
                 transformToStart();
             }
         })
 
         resetButton.addEventListener('click', () => {
-            clearInterval(startStopwatch);
+            clearInterval(startTimer);
             timerInProgress = false;
             resetButton.classList.add('animate__animated', 'animate__rubberBand')
             setTimeout(() => {
