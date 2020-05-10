@@ -159,10 +159,17 @@ span {
   box-shadow: 1px 5px 1px #2dc937;
   transition: all .15s ease-in;
   margin: 20px 40px;
+  
+}
+
+#main-start {
+  background: rgba(45,201,55, 0);
+  box-shadow: 1px 5px 1px rgba(45,201,55, 0);
 }
 
 
 .inner-start {
+  transition: background ease 0.7s;
   position: relative;
   color: #FFF;
   text-align: center;
@@ -201,6 +208,7 @@ span {
   }
 
   .inner-stop {
+    transition: background ease 0.7s;
     background: #cc3232;
     position: relative;
     color: #FFF;
@@ -231,10 +239,10 @@ span {
     height: 200px;
 
     /*background: linear-gradient(#DF293A, #EF495A);*/
-    background: rgba(0, 0, 255, 0.863);
+    background: rgba(0, 0, 255, 0.863, 0);
     border-radius: 150px;
    /* box-shadow: 1px 5px 1px #CE152A;*/
-   box-shadow: 1px 5px 1px blue;
+   box-shadow: 1px 5px 1px rgba(0, 0, 255, 0.863, 0);
     transition: all .15s ease-in;
     grid-area: 4 / 2 / 4 / 3;
     margin: 20px 40px;
@@ -261,7 +269,7 @@ span {
   
   #main-reset:hover {
     /*box-shadow: 1px 3px 1px #CE152A;*/
-    box-shadow: 1px 3px 1px blue;
+    box-shadow: 1px 3px 1px rgba(0, 0, 255, 0.863, 0);
     cursor: pointer;
     transform: scale(1.1);
     transition: ease 0.5s;
